@@ -5,10 +5,26 @@ const UserSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    email:{
+        type: String,
+        required:true,
+        unique:true
+    },
+    status:{
+        type: ["online","offline","away","do no disturb"],
+        default: "online"
+    },
+    profilePic:{
+        type: String
+    },
     password: {
         type: String,
         required: true
-    }
+    },
+    contracts:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:  "User"
+    }]
 });
 
 UserSchema.methods.validPassword = function (password) {
