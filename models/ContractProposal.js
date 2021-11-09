@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const ContactProposalSchema = new mongoose.Schema({
+const ContractProposalSchema = new mongoose.Schema({
     sender: {
         type: mongoose.Schema.Types.ObjectId,
         ref:"User",
@@ -14,6 +14,6 @@ const ContactProposalSchema = new mongoose.Schema({
 });
 
 
-const ControlProposal = mongoose.model("ContactProposal", ContactProposalSchema);
+const ContactProposal = mongoose.model("ContactProposal", ContractProposalSchema);
 
-module.exports=ControlProposal;
+module.exports=ContactProposal;

@@ -1,6 +1,6 @@
 const User=require("../models/User");
 const Msg=require("../models/Message")
-const ContactProposal=require("../models/ContactProposal")
+const ContactProposal=require("../models/ContractProposal")
 const defaultRoute=(req,res,next)=>{
   
     console.log("default");
