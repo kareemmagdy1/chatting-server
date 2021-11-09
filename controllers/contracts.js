@@ -1,9 +1,9 @@
 const User=require("../models/User");
 const Msg=require("../models/Message")
-const ContactProposal=require("../models/ContactProposal")
+const ContactProposal=require("../models/ContractProposal")
 
 
-const postContactProposal=(req,res,next)=>{
+const postContractProposal=(req,res,next)=>{
     try{
         let firstUserId=req.body.first;
         let secondUserId=req.body.second;
@@ -19,7 +19,7 @@ const postContactProposal=(req,res,next)=>{
     }
 }
 
-const getContacts=(req,res,next)=>{
+const getContracts=(req,res,next)=>{
     try{
         let id=req.params.id;
         User.findOne({id:id},function(err,user){
@@ -34,7 +34,7 @@ const getContacts=(req,res,next)=>{
 }
 
 
-const postAcceptContactProposal=(req,res,next)=>{
+const postAcceptContractProposal=(req,res,next)=>{
     let requestId=req.body.id;
     ContactProposal.findById(requestId,function(err,request){
         if(err){
@@ -71,7 +71,9 @@ const postAcceptContactProposal=(req,res,next)=>{
     })
 }
 
-const postDeclineContactProposal=(req,res,next)=>{
+const postDeclineContractProposal=(req,res,next)=>{
+    let requestId=req.body.id;
+    
     ContactProposal.deleteOne({id:requestId},function(err){
         if(err){
             return res.status(500).json({"err":err.message})
@@ -79,6 +81,9 @@ const postDeclineContactProposal=(req,res,next)=>{
         return res.status(204).json({"err":"contact proposal deleted"})
     })
 }
+
+
+
 const getProposals=(req,res,next)=>{
     try{
         let receiver=req.params.receiver;
@@ -93,7 +98,10 @@ const getProposals=(req,res,next)=>{
         return res.status(500).json({"msg":err.message})
     }
 }
-const postContactProposal=(req,res,next)=>{
+
+
+
+const postContractProposal=(req,res,next)=>{
     try{
         let firstUserId=req.body.first;
         let secondUserId=req.body.second;
@@ -109,7 +117,8 @@ const postContactProposal=(req,res,next)=>{
     }
 }
 
-
+module.exports.postAcceptContractProposal=postAcceptContractProposal;
+module.exports.postDeclineContractProposal=postDeclineContractProposal
 module.exports.getProposals=getProposals;
-module.exports.postContactProposal=postContactProposal;
-module.exports.getContacts=getContacts;
+module.exports.postContractProposal=postContractProposal;
+module.exports.getContracts=getContracts;

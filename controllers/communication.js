@@ -1,14 +1,12 @@
-const User=require("../models/User");
 const Msg=require("../models/Message")
-const ContactProposal=require("../models/ContactProposal")
 
 
-const getMsgs=(req,res,next)=>{
+const getMsgs=(req,res)=>{
     console.log("here");
     try{
         //let id="6184f30f10a4b104130eb4e7"
-        let id=req.params.id;
-        Msg.findOne({from:id},function(err,msg){
+        let userId=req.params.id;
+        Msg.findOne({receiver:userId},function(err,msg){
             console.log(msg);
             return res.status(200).json({"msg":msg})
         })
@@ -19,7 +17,31 @@ const getMsgs=(req,res,next)=>{
 
 }
 
-const postMsg=(req,res,next)=>{
+const editMsg=(req,res)=>{
+    let msgId=req.body.id;
+    let newMsg=req.body.message;
+    Msg.updateOne({id:msgId},{content:newMsg},function(err){
+        if(err){
+            return res.status(500).json({"err":err.message})
+        }
+
+        return res.status(204).json({"msg":"message updated successfully"})
+    })
+} 
+
+const deleteMsg=(req,res)=>{
+    let msgId=req.body.id;
+    let newMsg=req.body.message;
+    Msg.deleteOne({id:msgId},{content:newMsg},function(err){
+        if(err){
+            return res.status(500).json({"err":err.message})
+        }
+
+        return res.status(204).json({"msg":"message updated successfully"})
+    })
+}
+
+const postMsg=(req,res)=>{
     let from=req.body.from;
     let to=req.body.to;
     let time=req.body.time;
@@ -36,6 +58,9 @@ const postMsg=(req,res,next)=>{
     })
 }
 
-module.exports.getMsg=getMsg;
+
+
+module.exports.editMsg=editMsg;
+module.exports.deleteMsg=deleteMsg;
+module.exports.getMsgs=getMsgs;
 module.exports.postMsg=postMsg;
-module.exports.defaultRoute=defaultRoute;
