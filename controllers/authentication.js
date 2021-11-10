@@ -24,7 +24,7 @@ const postLogIn= (req,res,next)=>{
         }else{
             const token=jwt.sign({email:user.username, userId:user._id.toString()},
             process.env.SECRET_KEY,{expiresIn:"1h"})
-            return res.status(200).json({"msg":"logged in successfully","token":token,"userId":user._id.toString()})            
+            return res.status(200).json({"msg":"logged in successfully","token":token,"userId":user._id.toString(),"user":user})            
         }
     });
 }
