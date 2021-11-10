@@ -65,6 +65,7 @@ npm run
 
   * **Code:** 500 Internal Server Error <br />
     **Content:** `{ error : "an unexpected error has occurred" }`
+    
   OR
 
   * **Code:** 422 unprocessable entity <br />
