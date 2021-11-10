@@ -4,7 +4,6 @@ const Msg=require("../models/Message")
 const getMsgs=(req,res)=>{
     console.log("here");
     try{
-        //let id="6184f30f10a4b104130eb4e7"
         let userId=req.params.id;
         Msg.findOne({receiver:userId},function(err,msg){
             console.log(msg);
@@ -52,13 +51,9 @@ const postMsg=(req,res)=>{
             console.log(err)
             return res.status(400).json({"msg":err})
         }
-        console.log("msg inserted");
-        console.log(message);
         return res.status(201).json({"message":message,"msg":"msg created successfully"})
     })
 }
-
-
 
 module.exports.editMsg=editMsg;
 module.exports.deleteMsg=deleteMsg;
