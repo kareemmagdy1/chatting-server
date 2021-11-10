@@ -29,85 +29,19 @@ npm run
 ```
 
 
-## API Documentation
+## Services
 
-**Login User**
-----
-  Returns json data about a single user.
+* **Authentication**
 
-* **URL**
+  contains services like login and signup required to acquire a token of authentication 
 
-  /login
+* **Communication**
 
-* **Method:**
-
-  `POST`
+  services such as (send messages , edit message , delete message, receive message)
   
-*  **Body Params**
-
-   **Required:**
+* **Contracts**
  
-   `username:[String]`,
-   `password:[String]`
-
-
-* **Success Response:**
-
-  * **Code:** 200 <br />
-    **Content:** `{ id : [userId], Token : "Michael Bloom" , msg:"logged in successfully" }`
- 
-* **Error Response:**
-
-  * **Code:** 401 unauthorizied <br />
-    **Content:** `{ msg : "User doesn't exist" }`
-
-  OR
-
-  * **Code:** 500 Internal Server Error <br />
-    **Content:** `{ error : "an unexpected error has occurred" }`
-  OR
-
-  * **Code:** 422 unprocessable entity <br />
-    **Content:** `{ msg : "conflict in input" }`
-
-  OR
-
-  * **Code:** 400 bad request <br />
-    **Content:** `{ error : "missing parameters" }`
-
-**SignUp User**
-----
-  Creats a user account.
-
-* **URL**
-
-  /signup
-
-* **Method:**
-
-  `POST`
+  services that allow users to connect to each other provides services such as: (send connect request, accept connect request , decline connect request)
   
-*  **Body Params**
 
-   **Required:**
- 
-   `username:[String]`,
-   `password:[String]`,
-   `email:[String]`
-
-
-* **Success Response:**
-
-  * **Code:** 201 <br />
-    **Content:** `{ userId : [userId], msg:"User created successfully" }`
- 
-* **Error Response:**
-
-  * **Code:** 422 unprocessable entity <br />
-    **Content:** `{ msg : "conflict in input" }`
-
-  OR
-
-  * **Code:** 500 Internal Server Error <br />
-    **Content:** `{ error : "an unexpected error has occurred" }`
 
