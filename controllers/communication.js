@@ -1,8 +1,7 @@
 const Msg=require("../models/Message")
 
-
+//TODO functionality : use websockets instead of normal restapis
 const getMsgs=(req,res)=>{
-    console.log("here");
     try{
         let userId=req.params.id;
         Msg.findOne({receiver:userId},function(err,msg){

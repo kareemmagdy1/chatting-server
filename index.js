@@ -21,11 +21,14 @@ app.use((req,res,next)=>{
     next();
 })
 
-app.use("/status",statusRoutes)
 app.use(authenticationRoutes);
+app.use(isAuth,statusRoutes)
 app.use(isAuth,contractsRoutes);
 app.use(isAuth,communicationRoutes);
 
+app.use('/',(req,res)=>{
+    return res.send("default page reached");
+})
 mongoose.connect(URI).then(result => {
     console.log("connected");
     app.listen(process.env.PORT);

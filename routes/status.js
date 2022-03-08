@@ -3,8 +3,8 @@ const router = express.Router()
 const statusController=require("../controllers/status")
 
 
-router.get(statusController.getStatus)
+router.get("/status",statusController.getStatus)
 
-router.post(statusController.postStatus)
+router.post("/status",statusController.postStatus)
 
 module.exports=router;
